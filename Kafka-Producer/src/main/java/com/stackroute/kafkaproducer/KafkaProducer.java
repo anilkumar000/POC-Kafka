@@ -27,5 +27,4 @@ public class KafkaProducer {
 
         return "published succefully";
     }
-
 }
