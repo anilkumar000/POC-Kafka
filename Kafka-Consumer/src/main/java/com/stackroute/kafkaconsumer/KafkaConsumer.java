@@ -7,7 +7,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 @EnableKafka
 public class KafkaConsumer {
     @KafkaListener(topics="test-kafka")
-    public void listen(String message) {
+    public void listen(Object message) {
         System.out.println("Received Messasge in group - group-id: " + message);
     }
 }
