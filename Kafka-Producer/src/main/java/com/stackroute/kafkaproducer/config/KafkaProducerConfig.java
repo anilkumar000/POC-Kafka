@@ -1,6 +1,9 @@
 package com.stackroute.kafkaproducer.config;
 
-import com.stackroute.kafkaproducer.ProducerController;
+import static com.ibm.common.activitystreams.Makers.activity;
+
+import com.ibm.common.activitystreams.Activity;
+//import com.stackroute.kafkaproducer.ProducerController;
 import  org.apache.kafka.common.serialization.StringSerializer;
 //import com.stackroute.kafkaproducer.ProducerController;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -18,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 @EnableKafka
 @Configuration
-@EnableBinding(StreamsTest.class)
+//@EnableBinding(StreamsTest.class)
 public class KafkaProducerConfig {
     @Bean
-    public ProducerFactory<Object, ProducerController> producerFactory() {
+    public ProducerFactory<Object,Activity> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -29,7 +32,7 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
     @Bean
-    public KafkaTemplate<Object, ProducerController> kafkaTemplate() {
+    public KafkaTemplate<Object, Activity> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
