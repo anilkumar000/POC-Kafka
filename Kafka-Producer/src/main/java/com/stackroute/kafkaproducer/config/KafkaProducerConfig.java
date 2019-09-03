@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 @EnableKafka
 @Configuration
-//@EnableBinding(StreamsTest.class)
+@EnableBinding(StreamsTest.class)
 public class KafkaProducerConfig {
     @Bean
-    public ProducerFactory<Object,Activity> producerFactory() {
+    public ProducerFactory<Object,String> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -32,7 +32,7 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
     @Bean
-    public KafkaTemplate<Object, Activity> kafkaTemplate() {
+    public KafkaTemplate<Object, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 

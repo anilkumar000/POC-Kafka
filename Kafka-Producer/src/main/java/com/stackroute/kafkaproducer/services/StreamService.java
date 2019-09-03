@@ -14,12 +14,13 @@ public class StreamService {
     public StreamService(StreamsTest streamsTest) {
         this.streamsTest = streamsTest;
     }
-    public void sendGreeting(final Greetings greetings) {
+    public void sendGreeting(final String greetings) {
         System.out.println("Sending greetings {}"+greetings);
         MessageChannel messageChannel = streamsTest.outboundGreetings();
         messageChannel.send(MessageBuilder
                 .withPayload(greetings)
                 .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
                 .build());
+        System.out.println(messageChannel);
     }
 }
